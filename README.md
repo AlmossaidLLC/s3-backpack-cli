@@ -3,7 +3,7 @@
 > Interactive terminal UI for backing up any S3-compatible storage - right from your terminal.
 
 ```bash
-npx @almossaidllc/s3-backpack-cli
+npx github:AlmossaidLLC/s3-backpack-cli
 ```
 
 Works with **MinIO**, **RustFS**, **AWS S3**, and any other S3-compatible provider. Auto-installs the MinIO client (`mc`) if it is not already present.
@@ -36,20 +36,15 @@ Works with **MinIO**, **RustFS**, **AWS S3**, and any other S3-compatible provid
 
 ## Usage
 
-### Run without installing
+### Quick start (no installation needed)
 
 ```bash
-npx @almossaidllc/s3-backpack-cli
+npx github:AlmossaidLLC/s3-backpack-cli
 ```
 
-### Install globally
+That's it! npx automatically fetches and runs the latest version from GitHub.
 
-```bash
-npm install -g @almossaidllc/s3-backpack-cli
-s3-backpack-cli
-```
-
-### Run from source
+### Or run from source
 
 ```bash
 git clone git@github.com:AlmossaidLLC/s3-backpack-cli.git
