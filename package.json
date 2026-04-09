@@ -27,7 +27,7 @@
     "archive",
     "interactive"
   ],
-  "author": "almossaidllc",
+  "author": "Abdelilah Ezzouini (https://github.com/AbdelilahEzzouini)",
   "license": "MIT",
   "publishConfig": {
     "access": "public"

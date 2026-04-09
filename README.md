@@ -100,6 +100,12 @@ Both paths are configurable during the interactive setup (defaults to `./backups
 
 ---
 
+## Author
+
+Created by [Abdelilah Ezzouini](https://github.com/AbdelilahEzzouini)
+
+---
+
 ## License
 
 MIT
