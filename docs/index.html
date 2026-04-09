@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S3 Backpack CLI - Interactive S3 Backup Tool</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">S3 Backpack CLI</div>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#usage">Usage</a>
+                <a href="#providers" class="nav-link-highlight">Providers</a>
+                <a href="https://github.com/AlmossaidLLC/s3-backpack-cli" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>S3 Backpack CLI</h1>
+            <p class="subtitle">Interactive terminal UI for backing up any S3-compatible storage</p>
+            <p class="tagline">MinIO • RustFS • AWS S3 • Any S3-Compatible Provider</p>
+            
+            <div class="hero-cta">
+                <div class="command-box">
+                    <code>npx github:AlmossaidLLC/s3-backpack-cli</code>
+                    <button class="copy-btn" onclick="copyCommand()">Copy</button>
+                </div>
+                <p class="command-desc">No installation. No cloning. Just run it.</p>
+            </div>
+
+            <div class="hero-visual">
+                <div class="terminal-mockup">
+                    <div class="terminal-header">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                    </div>
+                    <div class="terminal-body">
+                        <div class="terminal-line">
+                            <span class="prompt">$</span> npx github:AlmossaidLLC/s3-backpack-cli
+                        </div>
+                        <div class="terminal-line empty"></div>
+                        <div class="terminal-line">
+                            <span class="cyan">╔═══════════════════════════════════════════════╗</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="cyan">║                                               ║</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="cyan">║  S3 BACKPACK · Backup S3-compatible storage   ║</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="cyan">║  MinIO · RustFS · AWS S3 · any compatible     ║</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="cyan">║                                               ║</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="cyan">╚═══════════════════════════════════════════════╝</span>
+                        </div>
+                        <div class="terminal-line empty"></div>
+                        <div class="terminal-line">
+                            <span class="question">?</span> S3-compatible endpoint URL: <span class="input">https://minio.example.com</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <h2>Why S3 Backpack?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Beautiful TUI</h3>
+                    <p>Colorful, interactive terminal UI with spinners and real-time status updates</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Zero Setup</h3>
+                    <p>Auto-installs MinIO client if missing. Just run and go</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✅</div>
+                    <h3>Verify & Validate</h3>
+                    <p>Verifies connection and credentials before any download starts</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📦</div>
+                    <h3>Multi-Select Buckets</h3>
+                    <p>Choose one or many buckets. Each gets downloaded and compressed</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Secure</h3>
+                    <p>Supports self-signed TLS, API signatures v4 and v2, custom regions</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🐧</div>
+                    <h3>Cross-Platform</h3>
+                    <p>Works on macOS and Linux with Node.js 18+</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="usage" class="usage">
+        <div class="container">
+            <h2>Quick Start</h2>
+            <div class="usage-steps">
+                <div class="step">
+                    <span class="step-num">1</span>
+                    <div>
+                        <h3>Run the command</h3>
+                        <code>npx github:AlmossaidLLC/s3-backpack-cli</code>
+                    </div>
+                </div>
+                <div class="step">
+                    <span class="step-num">2</span>
+                    <div>
+                        <h3>Enter your S3 credentials</h3>
+                        <p>Endpoint URL, access key, and secret key</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <span class="step-num">3</span>
+                    <div>
+                        <h3>Select buckets</h3>
+                        <p>Use Space to select, Enter to backup</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <span class="step-num">4</span>
+                    <div>
+                        <h3>Done!</h3>
+                        <p>Buckets downloaded and zipped in your chosen directory</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="providers" class="providers">
+        <div class="container">
+            <h2>Supported Providers</h2>
+            <table class="providers-table">
+                <thead>
+                    <tr>
+                        <th>Provider</th>
+                        <th>Path Style</th>
+                        <th>API Signature</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>MinIO</strong></td>
+                        <td><code>auto</code></td>
+                        <td><code>S3v4</code></td>
+                        <td>Works out of the box</td>
+                    </tr>
+                    <tr>
+                        <td><strong>RustFS</strong></td>
+                        <td><code>auto</code></td>
+                        <td><code>S3v4</code></td>
+                        <td>Works out of the box</td>
+                    </tr>
+                    <tr>
+                        <td><strong>AWS S3</strong></td>
+                        <td><code>auto</code></td>
+                        <td><code>S3v4</code></td>
+                        <td>Use regional endpoints</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Legacy S3</strong></td>
+                        <td><code>on</code></td>
+                        <td><code>S3v2</code></td>
+                        <td>Older S3-compatible systems</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="requirements">
+        <div class="container">
+            <h2>Requirements</h2>
+            <div class="requirements-grid">
+                <div class="req-item">
+                    <h3>Node.js ≥ 18</h3>
+                    <p><a href="https://nodejs.org" target="_blank">nodejs.org</a></p>
+                </div>
+                <div class="req-item">
+                    <h3>zip</h3>
+                    <p>Pre-installed on macOS. On Linux: <code>apt install zip</code></p>
+                </div>
+                <div class="req-item">
+                    <h3>Network Access</h3>
+                    <p>To your S3-compatible endpoint</p>
+                </div>
+            </div>
+            <p class="req-note">✨ MinIO client (<code>mc</code>) is installed automatically if missing</p>
+        </div>
+    </section>
+
+    <section class="cta-final">
+        <div class="container">
+            <h2>Ready to backup?</h2>
+            <div class="command-box-large">
+                <code>npx github:AlmossaidLLC/s3-backpack-cli</code>
+                <button class="copy-btn-large" onclick="copyCommand()">Copy Command</button>
+            </div>
+            <p class="cta-text">No installation required. Runs instantly.</p>
+            <a href="https://github.com/AlmossaidLLC/s3-backpack-cli" class="btn-secondary" target="_blank">View on GitHub</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Almossaid. MIT License.</p>
+            <p>
+                <a href="https://almossaid.com" target="_blank">Website</a> •
+                <a href="https://github.com/AlmossaidLLC/s3-backpack-cli" target="_blank">GitHub</a> •
+                <a href="https://github.com/AlmossaidLLC/s3-backpack-cli/blob/main/LICENSE" target="_blank">License</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        function copyCommand() {
+            const cmd = 'npx github:AlmossaidLLC/s3-backpack-cli';
+            navigator.clipboard.writeText(cmd).then(() => {
+                alert('Command copied to clipboard!');
+            }).catch(() => {
+                alert('Could not copy. Manual copy: ' + cmd);
+            });
+        }
+    </script>
+</body>
+</html>
