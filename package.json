@@ -4,7 +4,7 @@
   "description": "Interactive TUI for backing up any S3-compatible storage - MinIO, RustFS, AWS S3, and more",
   "main": "app.js",
   "bin": {
-    "s3-backpack-cli": "./app.js"
+    "s3-backpack-cli": "app.js"
   },
   "files": [
     "app.js"
