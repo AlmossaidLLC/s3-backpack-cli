@@ -13,6 +13,7 @@ Works with **MinIO**, **RustFS**, **AWS S3**, and any other S3-compatible provid
 ## Features
 
 - Colorful, interactive terminal UI with spinners and real-time status
+- Non-interactive one-liner mode for Supervisor, cron, and CI
 - Auto-installs the MinIO client (`mc`) if missing - no manual setup
 - Verifies connection and credentials before any download starts
 - Lists all available buckets and lets you pick one or many
@@ -43,6 +44,12 @@ npx github:AlmossaidLLC/s3-backpack-cli
 ```
 
 That's it! npx automatically fetches and runs the latest version from GitHub.
+
+Flags, environment variables, and Supervisor usage are documented in [CLI.md](CLI.md).
+
+```bash
+npm start -- --help
+```
 
 ### Or run from source
 
