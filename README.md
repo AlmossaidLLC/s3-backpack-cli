@@ -8,6 +8,8 @@ npx github:AlmossaidLLC/s3-backpack-cli
 
 Works with **MinIO**, **RustFS**, **AWS S3**, and any other S3-compatible provider. Auto-installs the MinIO client (`mc`) if it is not already present.
 
+![S3 Backpack CLI demo](docs/screenshot01.gif)
+
 ---
 
 ## Features

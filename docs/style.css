@@ -1,7 +1,39 @@
-/* Tailwind CDN handles almost all styling. Keep this file intentionally small. */
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+section[id],
+figure[id] {
+  scroll-margin-top: 5.5rem;
+}
+
+body {
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(118, 120, 237, 0.18), transparent 55%),
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: auto, 56px 56px, 56px 56px;
+}
 
 .blob {
-  animation: blobFloat 16s ease-in-out infinite;
+  animation: blobFloat 18s ease-in-out infinite;
+}
+
+.blob-delay {
+  animation-delay: -7s;
+}
+
+.grain {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 .reveal {
@@ -15,14 +47,31 @@
   transform: translateY(0);
 }
 
+.demo-frame {
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 30px 80px rgba(61, 52, 139, 0.45);
+}
+
 @keyframes blobFloat {
   0% { transform: translate3d(0, 0, 0) scale(1); }
-  50% { transform: translate3d(0, -24px, 0) scale(1.06); }
+  50% { transform: translate3d(12px, -28px, 0) scale(1.08); }
   100% { transform: translate3d(0, 0, 0) scale(1); }
 }
 
 @media (max-width: 640px) {
   .blob {
     filter: blur(56px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .blob,
+  .reveal {
+    animation: none;
+    transition: none;
+    opacity: 1;
+    transform: none;
   }
 }

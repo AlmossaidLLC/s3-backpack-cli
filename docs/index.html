@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="S3 Backpack CLI is a technical backup utility for engineers working with MinIO, RustFS, AWS S3, and other S3-compatible storage.">
-  <title>S3 Backpack CLI | S3 Backup Tool For Engineers</title>
+  <meta name="description" content="S3 Backpack CLI backs up MinIO, RustFS, AWS S3, and any S3-compatible storage from a guided terminal workflow.">
+  <title>S3 Backpack CLI</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -23,9 +23,6 @@
           fontFamily: {
             sora: ['Sora', 'sans-serif'],
             mono: ['JetBrains Mono', 'monospace']
-          },
-          boxShadow: {
-            glow: '0 24px 70px rgba(118, 120, 237, 0.28)'
           }
         }
       }
@@ -33,142 +30,150 @@
   </script>
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="font-sora bg-slate-950 text-slate-100">
+<body class="relative font-sora bg-slate-950 text-slate-100 antialiased">
   <div class="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
     <div class="blob absolute -top-24 -left-24 h-72 w-72 rounded-full bg-brandA/45 blur-3xl"></div>
-    <div class="blob absolute top-20 right-0 h-80 w-80 rounded-full bg-brandB/40 blur-3xl"></div>
-    <div class="blob absolute bottom-0 left-1/3 h-96 w-96 rounded-full bg-brandE/20 blur-3xl"></div>
+    <div class="blob blob-delay absolute top-24 -right-16 h-80 w-80 rounded-full bg-brandB/35 blur-3xl"></div>
+    <div class="blob absolute bottom-0 left-1/3 h-96 w-96 rounded-full bg-brandE/18 blur-3xl"></div>
   </div>
+  <div class="grain"></div>
 
-  <header class="sticky top-0 z-50 border-b border-white/10 bg-slate-950/75 backdrop-blur">
+  <header class="sticky top-0 z-50 border-b border-white/10 bg-slate-950/80 backdrop-blur-xl">
     <div class="mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-4">
-      <a href="#top" class="text-sm font-bold tracking-[0.14em] text-white sm:text-base">S3 BACKPACK CLI</a>
-      <nav class="flex flex-wrap items-center gap-4 text-xs text-slate-300 sm:text-sm">
+      <a href="#top" class="text-sm font-bold tracking-[0.16em] text-white sm:text-base">S3 BACKPACK</a>
+      <nav class="flex flex-wrap items-center gap-4 text-xs text-slate-300 sm:gap-6 sm:text-sm">
+        <a class="transition hover:text-brandC" href="#demo">Demo</a>
         <a class="transition hover:text-brandC" href="#features">Features</a>
         <a class="transition hover:text-brandC" href="#flow">Flow</a>
         <a class="transition hover:text-brandC" href="#providers">Providers</a>
-        <a class="rounded-full border border-brandB/60 px-3 py-1.5 text-brandB transition hover:bg-brandB hover:text-white" href="https://github.com/AlmossaidLLC/s3-backpack-cli" target="_blank" rel="noreferrer">GitHub</a>
+        <a class="rounded-full border border-brandB/70 px-3 py-1.5 font-medium text-brandB transition hover:bg-brandB hover:text-white" href="https://github.com/AlmossaidLLC/s3-backpack-cli" target="_blank" rel="noreferrer">GitHub</a>
       </nav>
     </div>
   </header>
 
   <main id="top">
-    <section class="reveal mx-auto grid w-full max-w-6xl gap-10 px-5 pb-20 pt-14 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:pt-24">
+    <section class="mx-auto grid w-full max-w-6xl items-center gap-10 px-5 pb-16 pt-14 lg:grid-cols-2 lg:gap-12 lg:pt-20">
       <div>
-        <span class="inline-flex rounded-full border border-brandB/50 bg-brandA/40 px-4 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-brandC">
-          Technical S3 Backup Utility
+        <span class="inline-flex rounded-full border border-brandB/40 bg-brandA/30 px-4 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-brandC">
+          S3 backup for engineers
         </span>
-        <h1 class="mt-5 text-4xl font-extrabold leading-tight text-white sm:text-5xl lg:max-w-4xl lg:text-6xl">
-          Operate S3 backups with a
-          <span class="bg-gradient-to-r from-brandC via-brandD to-brandE bg-clip-text text-transparent">cleaner terminal workflow</span>.
+        <h1 class="mt-6 text-4xl font-extrabold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-[2.85rem] xl:text-[3.25rem]">
+          Back up any S3-compatible store from a
+          <span class="bg-gradient-to-r from-brandC via-brandD to-brandE bg-clip-text text-transparent">cleaner terminal</span>.
         </h1>
-        <p class="mt-5 max-w-2xl text-base text-slate-300 sm:text-lg">
-          Built for developers, DevOps engineers, and technical operators who need a fast way to validate access,
-          select buckets, and generate timestamped archives from MinIO, RustFS, AWS S3, and similar endpoints.
+        <p class="mt-5 text-base leading-relaxed text-slate-300 sm:text-lg">
+          Guided TUI for MinIO, RustFS, AWS S3, and compatible endpoints. Validate credentials first, pick buckets, then download folders or optional ZIP archives.
         </p>
 
-        <div class="mt-8 rounded-2xl border border-brandB/45 bg-slate-900/75 p-4 shadow-glow">
-          <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
-            <code id="command" class="font-mono text-sm text-brandC sm:text-base">npx --yes github:AlmossaidLLC/s3-backpack-cli</code>
-            <button id="copyBtn" class="rounded-xl bg-brandB px-4 py-2 text-sm font-semibold text-white transition hover:bg-brandA" onclick="copyCommand()">Copy Command</button>
-          </div>
-          <p class="mt-3 text-sm text-slate-300">Runs on demand with guided setup, compatibility options, and minimal friction.</p>
+        <div class="mt-8 rounded-2xl border border-white/10 bg-slate-900/80 p-4">
+          <p class="mb-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">Quick start</p>
+          <code id="command" class="block overflow-x-auto whitespace-nowrap font-mono text-[13px] text-brandC sm:text-sm">npx --yes github:AlmossaidLLC/s3-backpack-cli</code>
+          <button type="button" class="copy-btn mt-3 rounded-xl bg-brandB px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-brandA" data-label="Copy Command">Copy Command</button>
         </div>
 
-        <div class="mt-5 flex flex-wrap gap-2 text-xs font-semibold text-slate-200 sm:text-sm">
-          <span class="rounded-full border border-white/15 bg-white/5 px-3 py-1">Credential validation first</span>
-          <span class="rounded-full border border-white/15 bg-white/5 px-3 py-1">Multi-bucket selection</span>
-          <span class="rounded-full border border-white/15 bg-white/5 px-3 py-1">Timestamped ZIP exports</span>
+        <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-slate-200 sm:text-sm">
+          <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1">Credential check first</span>
+          <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1">Multi-bucket select</span>
+          <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1">Optional ZIP</span>
+          <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1">Headless / Supervisor</span>
         </div>
       </div>
 
-      <div class="rounded-3xl border border-white/10 bg-slate-900/75 p-5 shadow-glow backdrop-blur">
-        <div class="mb-4 flex items-center gap-2">
-          <span class="h-3 w-3 rounded-full bg-brandE"></span>
-          <span class="h-3 w-3 rounded-full bg-brandC"></span>
-          <span class="h-3 w-3 rounded-full bg-brandB"></span>
-          <p class="ml-2 font-mono text-xs text-slate-300">backup-session</p>
-        </div>
-        <div class="space-y-2 font-mono text-xs sm:text-sm">
-          <p class="text-brandC">$ npx --yes github:AlmossaidLLC/s3-backpack-cli</p>
-          <p class="text-emerald-300">Connected - 14 buckets found</p>
-          <p class="text-slate-300">[ ] media</p>
-          <p class="text-slate-300">[x] invoices</p>
-          <p class="text-slate-300">[x] assets</p>
-          <p class="text-emerald-300">Archive -> backups/assets_20260409_213005.zip</p>
-          <p class="text-emerald-300">Archive -> backups/invoices_20260409_213029.zip</p>
-          <p class="text-brandB">All backups completed</p>
-        </div>
+      <div class="relative  " >
+        <figure id="demo" class="scroll-mt-24 overflow-hidden rounded-lg bg-[#00010] blur-2xl">
+          <img
+            src="screenshot01.gif"
+            alt="S3 Backpack CLI interactive backup session"
+            class="block h-auto w-full scale-[1] "
+            width="2156"
+            height="1888"
+          >
+        </figure>
+        <figure id="demo2" class="scroll-mt-24 overflow-hidden rounded-lg bg-[#00010] absolute top-0">
+          <img
+            src="screenshot01.gif"
+            alt="S3 Backpack CLI interactive backup session"
+            class="block h-auto w-full scale-[1.05] opacity-[0.85]"
+            width="2156"
+            height="1888"
+          >
+        </figure>
       </div>
     </section>
 
-    <section id="features" class="reveal mx-auto w-full max-w-6xl px-5 py-16 sm:py-20">
-      <h2 class="text-3xl font-bold text-white sm:text-4xl">Designed for engineers who need predictable backups</h2>
-      <p class="mt-3 max-w-3xl text-slate-300">The flow stays practical: verify access first, select buckets quickly, and leave with archives you can actually use.</p>
+    <section id="features" class="reveal mx-auto w-full max-w-6xl scroll-mt-24 px-5 py-16 sm:py-20">
+      <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Predictable backups, less ceremony</h2>
+      <p class="mt-3 max-w-2xl text-slate-300">Verify access before anything downloads. Select buckets once. Leave with local folders, and ZIP files only if you ask for them.</p>
 
-      <div class="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-        <article class="group rounded-2xl border border-white/10 bg-gradient-to-b from-brandA/30 to-slate-900/70 p-5 transition hover:-translate-y-1 hover:border-brandB/70 hover:shadow-lg hover:shadow-brandA/25">
-          <p class="text-xs font-semibold uppercase tracking-[0.15em] text-brandC">Fast Start</p>
-          <h3 class="mt-3 text-xl font-semibold text-white">Operator-friendly setup</h3>
-          <p class="mt-2 text-sm text-slate-300">Guides the session screen-by-screen and prepares the required client tooling when needed.</p>
+      <div class="mt-10 grid gap-4 md:grid-cols-2">
+        <article class="rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition hover:border-brandB/50">
+          <p class="text-xs font-semibold uppercase tracking-[0.16em] text-brandC">Fast start</p>
+          <h3 class="mt-3 text-xl font-semibold text-white">Guided or one-liner</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-300">Interactive TUI for humans. Flags and <code class="font-mono text-brandC">S3_*</code> env vars for Supervisor, cron, and CI.</p>
         </article>
-
-        <article class="group rounded-2xl border border-white/10 bg-gradient-to-b from-brandB/25 to-slate-900/70 p-5 transition hover:-translate-y-1 hover:border-brandB/70 hover:shadow-lg hover:shadow-brandB/25">
-          <p class="text-xs font-semibold uppercase tracking-[0.15em] text-brandC">Safe By Design</p>
+        <article class="rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition hover:border-brandB/50">
+          <p class="text-xs font-semibold uppercase tracking-[0.16em] text-brandC">Safe by design</p>
           <h3 class="mt-3 text-xl font-semibold text-white">Pre-flight verification</h3>
-          <p class="mt-2 text-sm text-slate-300">Checks connectivity and credentials before any mirror or archive job is allowed to run.</p>
+          <p class="mt-2 text-sm leading-relaxed text-slate-300">Connection and credentials are checked before download paths or archives are requested.</p>
         </article>
-
-        <article class="group rounded-2xl border border-white/10 bg-gradient-to-b from-brandD/25 to-slate-900/70 p-5 transition hover:-translate-y-1 hover:border-brandD/70 hover:shadow-lg hover:shadow-brandD/25">
-          <p class="text-xs font-semibold uppercase tracking-[0.15em] text-brandC">Team Productivity</p>
-          <h3 class="mt-3 text-xl font-semibold text-white">Multi-bucket execution</h3>
-          <p class="mt-2 text-sm text-slate-300">Select multiple buckets in one pass and run a repeatable backup workflow without extra scripting.</p>
+        <article class="rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition hover:border-brandD/50">
+          <p class="text-xs font-semibold uppercase tracking-[0.16em] text-brandC">Multi-bucket</p>
+          <h3 class="mt-3 text-xl font-semibold text-white">Select once, run once</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-300">Checkbox selection in the TUI, or <code class="font-mono text-brandC">--buckets</code> / <code class="font-mono text-brandC">--all-buckets</code> in headless mode.</p>
         </article>
-
-        <article class="group rounded-2xl border border-white/10 bg-gradient-to-b from-brandE/25 to-slate-900/70 p-5 transition hover:-translate-y-1 hover:border-brandE/70 hover:shadow-lg hover:shadow-brandE/25">
-          <p class="text-xs font-semibold uppercase tracking-[0.15em] text-brandC">Portable Output</p>
-          <h3 class="mt-3 text-xl font-semibold text-white">Archive-ready results</h3>
-          <p class="mt-2 text-sm text-slate-300">Outputs stay organized with timestamped ZIP files that are easier to move, retain, and restore.</p>
+        <article class="rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition hover:border-brandE/50">
+          <p class="text-xs font-semibold uppercase tracking-[0.16em] text-brandC">Portable output</p>
+          <h3 class="mt-3 text-xl font-semibold text-white">Folders, optional ZIP</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-300">Mirrored buckets land locally. Timestamped ZIP archives are opt-in, not required.</p>
         </article>
       </div>
     </section>
 
-    <section id="flow" class="reveal border-y border-white/10 bg-slate-900/45 py-16 sm:py-20">
+    <section id="flow" class="reveal scroll-mt-24 border-y border-white/10 bg-slate-900/40 py-16 sm:py-20">
       <div class="mx-auto w-full max-w-6xl px-5">
-        <h2 class="text-3xl font-bold text-white sm:text-4xl">How it works</h2>
-        <div class="mt-8 grid gap-4 md:grid-cols-2">
-          <div class="rounded-2xl border border-white/10 bg-slate-950/70 p-5">
+        <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">How it works</h2>
+        <ol class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <li class="rounded-2xl border border-white/10 bg-slate-950/70 p-5">
             <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-brandA text-sm font-bold">1</span>
-            <p class="mt-3 text-slate-200">Run the command and connect to your S3-compatible endpoint.</p>
-          </div>
-          <div class="rounded-2xl border border-white/10 bg-slate-950/70 p-5">
+            <p class="mt-3 font-medium text-white">Connect</p>
+            <p class="mt-1 text-sm text-slate-300">Endpoint, access key, secret key, TLS, path style, and signature.</p>
+          </li>
+          <li class="rounded-2xl border border-white/10 bg-slate-950/70 p-5">
             <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-brandB text-sm font-bold">2</span>
-            <p class="mt-3 text-slate-200">Choose path style, API signature, TLS mode, and optional region.</p>
-          </div>
-          <div class="rounded-2xl border border-white/10 bg-slate-950/70 p-5">
+            <p class="mt-3 font-medium text-white">Verify</p>
+            <p class="mt-1 text-sm text-slate-300">Credentials are checked before any output path is asked.</p>
+          </li>
+          <li class="rounded-2xl border border-white/10 bg-slate-950/70 p-5">
             <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-brandC text-sm font-bold text-slate-900">3</span>
-            <p class="mt-3 text-slate-200">Select one or multiple buckets with a clear checklist UI.</p>
-          </div>
-          <div class="rounded-2xl border border-white/10 bg-slate-950/70 p-5">
-            <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-brandE text-sm font-bold">4</span>
-            <p class="mt-3 text-slate-200">Get local folders and ZIP archives with precise timestamps.</p>
-          </div>
-        </div>
+            <p class="mt-3 font-medium text-white">Output</p>
+            <p class="mt-1 text-sm text-slate-300">Choose a download directory. ZIP is optional, then a path if you want archives.</p>
+          </li>
+          <li class="rounded-2xl border border-white/10 bg-slate-950/70 p-5">
+            <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-brandD text-sm font-bold">4</span>
+            <p class="mt-3 font-medium text-white">Select buckets</p>
+            <p class="mt-1 text-sm text-slate-300">Pick one or many from a checklist. Space toggles, Enter starts.</p>
+          </li>
+          <li class="rounded-2xl border border-white/10 bg-slate-950/70 p-5 sm:col-span-2 lg:col-span-1">
+            <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-brandE text-sm font-bold">5</span>
+            <p class="mt-3 font-medium text-white">Backup</p>
+            <p class="mt-1 text-sm text-slate-300">Each bucket is mirrored locally, then zipped only if you opted in.</p>
+          </li>
+        </ol>
       </div>
     </section>
 
-    <section id="providers" class="reveal mx-auto w-full max-w-6xl px-5 py-16 sm:py-20">
-      <h2 class="text-3xl font-bold text-white sm:text-4xl">Compatibility matrix</h2>
-      <div class="mt-6 overflow-x-auto rounded-2xl border border-white/10 bg-slate-900/65">
-        <table class="min-w-[620px] w-full text-left text-sm">
-          <thead class="bg-brandA/40 text-slate-100">
+    <section id="providers" class="reveal mx-auto w-full max-w-6xl scroll-mt-24 px-5 py-16 sm:py-20">
+      <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Compatibility</h2>
+      <div class="mt-6 overflow-hidden overflow-x-auto rounded-2xl border border-white/10">
+        <table class="min-w-[560px] w-full text-left text-sm">
+          <thead class="bg-brandA/35 text-slate-100">
             <tr>
-              <th class="px-5 py-3">Provider</th>
-              <th class="px-5 py-3">Recommended path style</th>
-              <th class="px-5 py-3">API signature</th>
+              <th class="px-5 py-3 font-semibold">Provider</th>
+              <th class="px-5 py-3 font-semibold">Path style</th>
+              <th class="px-5 py-3 font-semibold">API signature</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-white/10 text-slate-200">
+          <tbody class="divide-y divide-white/10 bg-slate-900/50 text-slate-200">
             <tr class="hover:bg-white/5"><td class="px-5 py-3">MinIO</td><td class="px-5 py-3"><code class="rounded bg-white/10 px-2 py-1 font-mono text-brandC">auto</code></td><td class="px-5 py-3"><code class="rounded bg-white/10 px-2 py-1 font-mono text-brandC">S3v4</code></td></tr>
             <tr class="hover:bg-white/5"><td class="px-5 py-3">RustFS</td><td class="px-5 py-3"><code class="rounded bg-white/10 px-2 py-1 font-mono text-brandC">auto</code></td><td class="px-5 py-3"><code class="rounded bg-white/10 px-2 py-1 font-mono text-brandC">S3v4</code></td></tr>
             <tr class="hover:bg-white/5"><td class="px-5 py-3">AWS S3</td><td class="px-5 py-3"><code class="rounded bg-white/10 px-2 py-1 font-mono text-brandC">auto</code></td><td class="px-5 py-3"><code class="rounded bg-white/10 px-2 py-1 font-mono text-brandC">S3v4</code></td></tr>
@@ -176,51 +181,60 @@
           </tbody>
         </table>
       </div>
+      <p class="mt-4 text-sm text-slate-400">Self-signed certificates: enable insecure TLS. Flags and env vars: see <a class="text-brandC underline-offset-4 hover:underline" href="https://github.com/AlmossaidLLC/s3-backpack-cli/blob/main/CLI.md" target="_blank" rel="noreferrer">CLI.md</a>.</p>
     </section>
 
     <section class="reveal px-5 pb-20">
-      <div class="mx-auto w-full max-w-5xl rounded-3xl border border-brandB/40 bg-gradient-to-br from-brandA/45 via-brandB/25 to-brandE/30 p-8 text-center shadow-glow sm:p-10">
-        <h2 class="text-3xl font-bold text-white sm:text-4xl">Run the backup workflow</h2>
-        <p class="mx-auto mt-3 max-w-2xl text-slate-100/90">A focused CLI for technical users who want a faster path from endpoint access to clean backup archives.</p>
-        <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
-          <button class="rounded-xl bg-brandC px-5 py-3 text-sm font-semibold text-slate-900 transition hover:bg-brandD" onclick="copyCommand()">Copy npx Command</button>
-          <a class="rounded-xl border border-white/40 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10" href="https://github.com/AlmossaidLLC/s3-backpack-cli" target="_blank" rel="noreferrer">Open Repository</a>
+      <div class="mx-auto w-full max-w-5xl rounded-3xl border border-brandB/35 bg-gradient-to-br from-brandA/50 via-brandB/20 to-brandE/25 p-8 text-center sm:p-12">
+        <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Run it now</h2>
+        <p class="mx-auto mt-3 max-w-xl text-slate-100/90">No install required. npx fetches and launches the latest version from GitHub.</p>
+        <div class="mt-7 flex flex-wrap items-center justify-center gap-3">
+          <button type="button" class="copy-btn rounded-xl bg-brandC px-5 py-3 text-sm font-semibold text-slate-900 transition hover:bg-brandD" data-label="Copy npx Command">Copy npx Command</button>
+          <a class="rounded-xl border border-white/35 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10" href="https://github.com/AlmossaidLLC/s3-backpack-cli" target="_blank" rel="noreferrer">Open repository</a>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="border-t border-white/10 bg-slate-950/70 py-8">
-    <div class="mx-auto flex w-full max-w-6xl flex-col gap-2 px-5 text-center text-sm text-slate-300">
+  <footer class="border-t border-white/10 py-8">
+    <div class="mx-auto flex w-full max-w-6xl flex-col items-center gap-2 px-5 text-center text-sm text-slate-400">
       <p>Created by <a class="text-brandC hover:text-brandD" href="https://github.com/AbdelilahEzzouini" target="_blank" rel="noreferrer">Abdelilah Ezzouini</a></p>
-      <p><a class="hover:text-brandC" href="https://github.com/AlmossaidLLC/s3-backpack-cli" target="_blank" rel="noreferrer">Repository</a> · <a class="hover:text-brandC" href="https://github.com/AlmossaidLLC/s3-backpack-cli/blob/main/LICENSE" target="_blank" rel="noreferrer">MIT License</a></p>
+      <p>
+        <a class="hover:text-brandC" href="https://github.com/AlmossaidLLC/s3-backpack-cli" target="_blank" rel="noreferrer">Repository</a>
+        ·
+        <a class="hover:text-brandC" href="https://github.com/AlmossaidLLC/s3-backpack-cli/blob/main/LICENSE" target="_blank" rel="noreferrer">MIT License</a>
+      </p>
     </div>
   </footer>
 
   <script>
-    function copyCommand() {
-      const cmd = document.getElementById('command').textContent;
-      const btn = document.getElementById('copyBtn');
+    function copyCommand(button) {
+      const cmd = document.getElementById('command').textContent.trim();
+      const label = button.getAttribute('data-label') || 'Copy';
 
       navigator.clipboard.writeText(cmd).then(function () {
-        if (!btn) return;
-        const old = btn.textContent;
-        btn.textContent = 'Copied';
+        button.textContent = 'Copied';
         setTimeout(function () {
-          btn.textContent = old;
+          button.textContent = label;
         }, 1200);
       }).catch(function () {
         alert('Copy this command manually:\n' + cmd);
       });
     }
 
-    const observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
+    document.querySelectorAll('.copy-btn').forEach(function (button) {
+      button.addEventListener('click', function () {
+        copyCommand(button);
+      });
+    });
+
+    const observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
         if (entry.isIntersecting) entry.target.classList.add('is-visible');
       });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.12 });
 
-    document.querySelectorAll('.reveal').forEach(function(node) {
+    document.querySelectorAll('.reveal').forEach(function (node) {
       observer.observe(node);
     });
   </script>
