@@ -16,7 +16,7 @@ Works with **MinIO**, **RustFS**, **AWS S3**, and any other S3-compatible provid
 - Auto-installs the MinIO client (`mc`) if missing - no manual setup
 - Verifies connection and credentials before any download starts
 - Lists all available buckets and lets you pick one or many
-- Downloads each selected bucket and creates a `.zip` archive with a timestamp
+- Downloads each selected bucket and optionally creates a timestamped `.zip` archive
 - Supports self-signed TLS, path-style, virtual-host style, and both S3 API signatures
 - Works on macOS and Linux
 
@@ -27,7 +27,7 @@ Works with **MinIO**, **RustFS**, **AWS S3**, and any other S3-compatible provid
 | Requirement | Notes |
 |---|---|
 | Node.js ≥ 18 | [nodejs.org](https://nodejs.org) |
-| `zip` | Pre-installed on most systems (`brew install zip` / `apt install zip`) |
+| `zip` | Only needed if you choose to create archives (`brew install zip` / `apt install zip`) |
 | Network access | To your S3-compatible endpoint |
 
 > **`mc` (MinIO client)** is installed automatically to `~/.local/bin/mc` if not found.
@@ -58,10 +58,11 @@ npm start
 ## How It Works
 
 1. **Endpoint & credentials** - enter your S3 endpoint URL, access key, and secret key
-2. **Options** - choose path style, API signature, and optional region
-3. **Connection check** - the tool verifies credentials before proceeding
-4. **Bucket selection** - a checkbox list of all available buckets appears
-5. **Backup** - each selected bucket is mirrored locally and compressed into a `.zip`
+2. **Options** - choose path style, API signature, TLS mode, and optional region
+3. **Connection check** - the tool verifies credentials before asking for output paths
+4. **Output** - choose a download directory, then optionally create zip archives
+5. **Bucket selection** - a checkbox list of all available buckets appears
+6. **Backup** - each selected bucket is mirrored locally, and zipped only if you opted in
 
 ---
 
@@ -70,9 +71,9 @@ npm start
 | Path | Description |
 |---|---|
 | `<download_dir>/<bucket>/` | Raw files mirrored from the bucket |
-| `<zip_dir>/<bucket>_<timestamp>.zip` | Compressed archive ready for storage |
+| `<zip_dir>/<bucket>_<timestamp>.zip` | Compressed archive (only if you opted in) |
 
-Both paths are configurable during the interactive setup (defaults to `./backups/`).
+The download path is configurable during setup (defaults to `./backups/`). Zip output is asked only after you confirm that you want archives.
 
 ---
 

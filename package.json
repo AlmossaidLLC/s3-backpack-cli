@@ -2,15 +2,16 @@
   "name": "@almossaidllc/s3-backpack-cli",
   "version": "1.0.0",
   "description": "Interactive TUI for backing up any S3-compatible storage - MinIO, RustFS, AWS S3, and more",
-  "main": "app.js",
+  "type": "module",
+  "main": "src/index.js",
   "bin": {
-    "s3-backpack-cli": "app.js"
+    "s3-backpack-cli": "src/index.js"
   },
   "files": [
-    "app.js"
+    "src"
   ],
   "scripts": {
-    "start": "node app.js"
+    "start": "node src/index.js"
   },
   "engines": {
     "node": ">=18"
